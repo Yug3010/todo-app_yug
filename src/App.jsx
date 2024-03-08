@@ -34,6 +34,24 @@ function App() {
     wr(newtodos);
   }
 
+  let ondelete=(e,id)=>{
+    console.log(`id is ${id}`);
+    let newtodos=w.filter(item=>{
+      return item.id!==id;
+    })
+    wr(newtodos);
+  }
+
+  let onedit=(e,id)=>{
+    console.log(id);
+    let newtodos1=w.filter(it=>it.id==id);
+    settodo(newtodos1[0].todo);
+    let newtodos=w.filter(item=>{
+      return item.id!==id;
+    })
+    wr(newtodos);
+  }
+
   return (
     <>
       <Navbar/>
@@ -44,8 +62,9 @@ function App() {
             <input className='mr-3 border border-1 border-black' type="text" name="text" id="text" placeholder='enter text' value={todo} onChange={oc}/>
             <button className='py-1 px-3 border border-1 border-black' onClick={ol}>Add</button>
           </div>
+          {w.length===0 && "No todos to display"}
           <div>
-          {w.map((e,i)=>{
+          {w.map((e)=>{
             return <div>
             <ul>
               <li className='m-2 bg-gray-400 text-white p-4'>
@@ -56,8 +75,12 @@ function App() {
                   </div>
       
                   <div>
-                      <button className='border border-1 border-black mx-2'>Delete</button>
-                      <button className='border border-1 border-black'>Edit</button>
+                      <button  onClick={(el)=>{
+                        ondelete(el,e.id)
+                      }} className='border border-1 border-black mx-2'>Delete</button>
+                      <button onClick={(el)=>{
+                        onedit(el,e.id)
+                      }}  className='border border-1 border-black'>Edit</button>
                   </div>
                   </div>
                   
