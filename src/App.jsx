@@ -1,23 +1,42 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './components/Navbar'
 import List from './components/List'
 import { v4 as uuidv4 } from 'uuid';
+import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
 function App() {
   let [todo, settodo] = useState("");
   let[w,wr]=useState([]);
 
+  useEffect(() => {
+    let todostring=localStorage.getItem("Todos");
+    if(todostring)
+    {
+      let todos=JSON.parse(localStorage.getItem("Todos"));
+    wr(todos);
+    }
+    
+  }, [])
+  
+
+  let savetolocal=(params)=>{
+    localStorage.setItem("Todos",JSON.stringify(w));
+  }
+
   let ol=()=>{
     wr([...w,{id:uuidv4(),todo,isCompleted:false}]);
     settodo("");
-    console.log(w);
+    // console.log(w);
+    savetolocal();
   }
 
   let oc=(e)=>{
     settodo(e.target.value);
+
   }
 
   let oncheck=(e)=>{
@@ -32,6 +51,7 @@ function App() {
     console.log(newtodos);
     newtodos[index].isCompleted = !newtodos[index].isCompleted;
     wr(newtodos);
+    savetolocal();
   }
 
   let ondelete=(e,id)=>{
@@ -40,6 +60,7 @@ function App() {
       return item.id!==id;
     })
     wr(newtodos);
+    savetolocal();
   }
 
   let onedit=(e,id)=>{
@@ -50,6 +71,7 @@ function App() {
       return item.id!==id;
     })
     wr(newtodos);
+    savetolocal();
   }
 
   return (
@@ -77,10 +99,10 @@ function App() {
                   <div>
                       <button  onClick={(el)=>{
                         ondelete(el,e.id)
-                      }} className='border border-1 border-black mx-2'>Delete</button>
+                      }} ><MdDelete /></button>
                       <button onClick={(el)=>{
                         onedit(el,e.id)
-                      }}  className='border border-1 border-black'>Edit</button>
+                      }} ><FaEdit /></button>
                   </div>
                   </div>
                   
