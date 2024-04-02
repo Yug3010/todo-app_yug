@@ -1,5 +1,79 @@
-*{
-  margin: 0;
-  padding: 0;
+/* App.css */
+
+/* Container */
+.todo-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
+/* Input field */
+.todo-input {
+  width: calc(100% - 80px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Add button */
+.add-button {
+  width: 80px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 0;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
+
+/* Todo list */
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+/* Todo item */
+.todo-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Checkbox */
+.todo-checkbox {
+  margin-right: 10px;
+}
+
+/* Todo text */
+.todo-text {
+  flex: 1;
+  font-size: 16px;
+}
+
+/* Completed todo text */
+.todo-completed {
+  text-decoration: line-through;
+}
+
+/* Action buttons */
+.action-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.action-button:hover {
+  background-color: #e53935;
+}
